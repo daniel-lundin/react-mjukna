@@ -1,21 +1,25 @@
 import React from "react";
-import { init, mjukna } from "mjukna";
+import { mjukna } from "mjukna";
 
 const m = React.createElement;
 export default class Mjukna extends React.Component {
   componentDidMount() {
-    init();
-    mjukna(this.ref);
+    this.disconnect = mjukna(this.ref);
   }
+
+  componentWillUnmount() {
+    this.disconnect();
+  }
+
   render() {
     m(
-      "h1",
+      "div",
       {
         ref: r => {
           this.ref = r;
         }
       },
-      "MJUKNA"
+      this.props.children
     );
   }
 }

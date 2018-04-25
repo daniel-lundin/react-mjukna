@@ -1,4 +1,5 @@
 import resolve from "rollup-plugin-node-resolve";
+import uglify from "rollup-plugin-uglify";
 
 export default {
   input: "src/mjukna.js",
@@ -11,6 +12,7 @@ export default {
     resolve({
       module: true,
       modulesOnly: true
-    })
+    }),
+    uglify()
   ]
 };
